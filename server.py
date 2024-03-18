@@ -26,8 +26,8 @@ while(True):
         print(data)
 
         if (data != ""):
-            msg1 = "Sumeet is the best"
-            msg2 = "Sumeet can do it"
+            msg1 = "Good Moring... "
+            msg2 = "hello Guys... "
 
             msg1Bytes = str.encode(msg1)
             msg2Bytes = str.encode(msg2)
