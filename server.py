@@ -1,40 +1,52 @@
+#Code for server and client Archetecture
 import socket
+import threading
+import time
 
-serverSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM) #creating a socket
-print("Server side")
+time.sleep(1)
 
-# for ip address:
-ip = socket.gethostbyname(socket.gethostname()) #this line gets the ip address of the computer automatically
-# ip = '127.0.0.1'
+header = 64  
+format = 'utf-8'
 port = 5050
-serverSocket.bind((ip, port))
+ip = socket.gethostbyname(socket.gethostname())                                #used for automatically geting the ip address
+#print(socket.gethostname())                                                   #used for getting the name of the host device info
+ADDR = (ip,port)
+# print(type(ip))
+Deconnect_msg = "Connection lost."
 
-print("server ip {} port {}".format(ip, port))
+Server = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+print(ip)
+Server.bind(ADDR)                                                              #used for binding ip address to this socket
+print('The ip {} with port {}'.format(ip,port))
 
-serverSocket.listen()
 
-count = 0
 
-while(True):
-    (clientConnection, clientAddress) = serverSocket.accept()
-    count += 1
-    #print("Accepted {} connections".format(count))
-    print(f"Accepted {count} connections")
+def handle_client(conn, addr):
+    print(f"[New Connection]: {ADDR} connected. \n")
 
-    while(True):
-        data = clientConnection.recv(1024)
-        print(data)
+    connected = True
+    while connected:
+        msg_len = conn.recv(header).decode(format)
+        if msg_len:
+            msg_len = int(msg_len)
+            msg = conn.recv(msg_len).decode(format)
+            if msg == Deconnect_msg:
+                connected = False
 
-        if (data != ""):
-            msg1 = "Good Moring... "
-            msg2 = "hello Guys... "
+            print(f'[{ADDR}] \n Name: {msg}')
+            conn.send("Get Ready to Play: ".encode(format))
+    
+    conn.close()
 
-            msg1Bytes = str.encode(msg1)
-            msg2Bytes = str.encode(msg2)
+def start():
+    Server.listen()
+    while True:
+        conn, addr = Server.accept()                                            #used for blocking the processes until the next code
+        thread = threading.Thread(target=handle_client, args=(conn, addr))
+        #Syntax of applying thread: thread = threading.Thread(target=class_name, args = (arguments))
+        thread.start()
 
-            clientConnection.send(msg1Bytes)
-            clientConnection.send(msg2Bytes)
+        print(f'[Activation]: {threading.active_count() - 1}')
 
-            print("Connection stablished")
-            break
-
+print("[Starting]: Server side is starting... ")
+start()
