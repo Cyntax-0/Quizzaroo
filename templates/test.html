@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quizz</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/test.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='img/tab.png') }}" />
+
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-image: url("static/img/test.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+
+    <script src="{{ url_for('static', filename='js/test.js') }}"></script>
+</head>
+
+<body>
+    <header>
+        <h2 class="logo">Quizzaroo</h2>
+        <h3 id="welcome-message"></h3>
+        <div id="timer" class="time">30</div>
+    </header>
+
+    <div class="app">
+        <h1>Simple Quiz</h1>
+        <div class="quiz">
+            <h2 id="question">Question goes here</h2>
+            <div id="answer-buttons">
+                <button class="btn">Answer 1</button>
+                <button class="btn">Answer 2</button>
+                <button class="btn">Answer 3</button>
+                <button class="btn">Answer 4</button>
+            </div>
+            <button id="next-btn">Next</button>
+        </div>
+    </div>
+
+    <script>
+        var nickname = '{{ nickname }}';
+        var welcomeMessage = 'Welcome, ' + nickname;
+        document.getElementById('welcome-message').textContent = welcomeMessage;
+    </script>
+</body>
+
+</html>

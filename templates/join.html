@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Join - Quizzaroo</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/log_reg.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='img/tab.png') }}" />
+
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-image: url("static/img/join.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</head>
+
+<body>
+    <header>
+        <h2 class="logo">Quizzaroo</h2>
+        <nav>
+            <a href="/login">Login</a>
+            <a href="/register">Register</a>
+        </nav>
+    </header>
+
+    <div class="wrapper">
+        <div class="form-box">
+            <h2>Join Quiz</h2>
+            <form id="joinForm" class="form" method="POST">
+                <div class="input-box">
+                    <span class="icon">
+                        <ion-icon name="person"></ion-icon>
+                    </span>
+                    <input type="text" name="nickname" required>
+                    <label>Nickname</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon">
+                        <ion-icon name="lock-closed"></ion-icon>
+                    </span>
+                    <input type="number" name="code" required>
+                    <label>Code</label>
+                </div>
+                <button id="join" class="btn" type="submit">Join</button>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

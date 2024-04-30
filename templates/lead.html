@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=., initial-scale=1.0">
+    <title>Leaderboard</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='img/tab.png') }}" />
+
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-image: url("static/img/home.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h2 class="logo">Quizzaroo</h2>
+        <nav>
+            <a href="/clear" class="btnLogin-popup">Clear</a>
+            <a href="/back" class="btnLogin-popup">Back</a>
+        </nav>
+    </header>
+
+    <table>
+        <thead>
+            <tr>
+                <th colspan="3">
+                    <h1>Leaderboard</h1>
+                </th>
+            </tr>
+            <tr>
+                <th>Rank</th>
+                <th>Name</th>
+                <th>Score</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for score in scores %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ score[1] }}</td>
+                <td>{{ score[2] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+
+</html>

@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Register - Quizzaroo</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/log_reg.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='img/tab.png') }}" />
+
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-image: url("static/img/reg.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</head>
+
+<body>
+    <header>
+        <h2 class="logo">Quizzaroo</h2>
+        <nav>
+            <a href="/join" class="btnLogin-popup">Join Quizz</a>
+        </nav>
+    </header>
+
+    <div class="wrapper">
+        <div class="form-box">
+            <h2>Register</h2>
+            <form class="form" method="POST">
+                <div class="input-box">
+                    <span class="icon">
+                        <ion-icon name="person"></ion-icon>
+                    </span>
+                    <input type="text" name="name" required>
+                    <label>Name</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon">
+                        <ion-icon name="mail"></ion-icon>
+                    </span>
+                    <input type="text" name="email" required>
+                    <label>Email</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon">
+                        <ion-icon name="lock-closed"></ion-icon>
+                    </span>
+                    <input type="password" name="password" required>
+                    <label>Password</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon">
+                        <ion-icon name="lock-closed"></ion-icon>
+                    </span>
+                    <input type="password" name="confirm_password" required>
+                    <label>Confirm Password</label>
+                </div>
+                <button type="submit" class="btn" onclick="login();">Register</button>
+                <div class="login-register">
+                    <p>Already have an account? <a href="/login" class="register-link">Login</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const passwordInput = document.getElementById('password');
+        const confirmPasswordInput = document.getElementById('confirm_password');
+        const passwordError = document.getElementById('password_error');
+
+        confirmPasswordInput.addEventListener('input', () => {
+            if (passwordInput.value !== confirmPasswordInput.value) {
+                passwordError.textContent = "Passwords do not match";
+            } else {
+                passwordError.textContent = "";
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login - Quizzaroo</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/log_reg.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='img/tab.png') }}" />
+
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-image: url("static/img/log.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</head>
+
+<body>
+    <header>
+        <h2 class="logo">Quizzaroo</h2>
+        <nav>
+            <a href="/join" class="btnLogin-popup">Join Quizz</a>
+        </nav>
+    </header>
+
+    <div class="wrapper">
+        <div class="form-box">
+            <h2>Login</h2>
+            <form class="form" method="POST" action="{{ url_for('login') }}">
+                <div class="input-box">
+                    <span class="icon">
+                        <ion-icon name="mail"></ion-icon>
+                    </span>
+                    <input type="email" name="email" required>
+                    <label>Email</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon">
+                        <ion-icon name="lock-closed"></ion-icon>
+                    </span>
+                    <input type="password" name="password" required>
+                    <label>Password</label>
+                </div>
+                <div class="remember-forgot">
+                    <label><input type="checkbox">Remember me</label>
+                    <a href="#">Forgot Password?</a>
+                </div>
+                <button type="submit" class="btn">Login</button>
+                <div class="login-register">
+                    <p>Don't have an account? <a href="/register" class="register-link">Register</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

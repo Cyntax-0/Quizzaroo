@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='img/tab.png') }}" />
+
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-image: url("static/img/backg.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+
+    <script src="{{ url_for('static', filename='js/home.js') }}"></script>
+</head>
+
+<body>
+    <header>
+        <h2 class="logo">Quizzaroo</h2>
+        <h3>Welcome, {{ name }}!</h3>
+        <nav>
+            <a href="/leaderboard" class="btnLogin-popup">Leaderboard</a>
+            <a href="/logout" class="btnLogin-popup">Logout</a>
+        </nav>
+    </header>
+
+    <div>
+        <h4 id="displayText" style="display:none;">Code: {{ random_number }}</h4> <br>
+        <button class="btn start" id="startButton" onclick="startQuiz()">Start Quiz</button>
+        <br> <!-- Added line break -->
+        <button class="btn stop" id="stopButton" style="display:none;" onclick="endQuiz()">End Quiz</button>
+    </div>
+
+</body>
+
+</html>
